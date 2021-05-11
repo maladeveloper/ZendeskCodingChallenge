@@ -6,12 +6,15 @@ const OKAY_STATUS = 200;
 const email = "srikumar.malavan@gmail.com"; 
 const token = "OzRDPQ5fhG9NGpxDywBvyIdz0dR71Stx48dmLSrs";
 const getTicketVars = {
-	path: "/api/v2/tickets.json?page",
-	nums : "[size]="
+	path: "/api/v2/tickets.json?",
+	pageNums : "page[size]=",
+	pageAfter:"page[after]=",
+	joiner: "&"
+
 }
 const processDataVars = {
 	"tickets":	(data) =>processTickets( followJsonDict(data, ["tickets"])), //Has the path in json to the relavant data
-	"nextLink":(data) => followJsonDict(data, ["links","next"]),
+	"nextLink":(data) => getNextLink(followJsonDict(data, ["links","next"])),
 	"hasMore": (data) => followJsonDict(data, ["meta", "has_more"])
 }
 
@@ -33,6 +36,13 @@ function followJsonDict(jsonData, pathArray){
 	}
 
 	return data;
+}
+
+function getNextLink(urlData){
+
+	var decodedUrl = decodeURI(urlData)
+
+	return decodedUrl.split(getTicketVars.pageAfter).pop().split(getTicketVars.joiner)[0]
 }
 
 function processTickets(ticketsData){
@@ -58,6 +68,7 @@ function processData(data){
 
 	for(var key in processDataVars){
 		processedData[key] = processDataVars[key](data)
+		//if(key=="nextLink"){ console.log(processedData[key])}
 	}
 
 	return processedData;
@@ -66,9 +77,17 @@ function processData(data){
 
 }
 
-async function getTickets(numTickets){
+async function getTickets(ticketNums, afterUrl){
+	var path; 
 
-	var path = getTicketVars.path + getTicketVars.nums + numTickets;
+	path = getTicketVars.path + getTicketVars.pageNums + ticketNums;
+
+	if(afterUrl){
+		path += getTicketVars.joiner + getTicketVars.pageAfter + afterUrl
+	}
+
+	console.log(path)
+
 
 	var data = await makeRequest(path);
 	var processedData = processData(data);

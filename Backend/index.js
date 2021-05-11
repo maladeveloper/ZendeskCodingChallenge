@@ -8,9 +8,11 @@ var apiAccess = require("./apiAccess");
 // define the first route
 app.get("/tickets", async function (req, res) {
   
-  var data = await apiAccess.getTickets(20)
+  var afterUrl = req.query.afterUrl
+  var ticketNums = req.query.ticketNums
+
+  var data = await apiAccess.getTickets(ticketNums, afterUrl)
   res.json(data);
-  //res.send("<p>Hello</p>") 
 
 })
 
