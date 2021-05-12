@@ -3,8 +3,7 @@ import {webFuncInteraction, backendWebVars} from "./backendInterface";
 import {NUM_TICKETS} from "../Variables";
 import Button from 'react-bootstrap/Button';
 import TicketPane from './TicketPane';
-import Alert from 'react-bootstrap/Alert'
-
+import Spinner from 'react-bootstrap/Spinner';
 
 class TicketViewer extends React.Component{
 
@@ -25,7 +24,7 @@ class TicketViewer extends React.Component{
     }
 
     setNewTickets(){
-        console.log("Setting new tickets...")
+        this.setState({tickets:false})
         webFuncInteraction(backendWebVars.GET_TICKS, 
             {
                 ticketNums:NUM_TICKETS, 
@@ -36,6 +35,7 @@ class TicketViewer extends React.Component{
                 ...ticketsData
             })
         })
+    
 
     }
 
@@ -72,6 +72,7 @@ class TicketViewer extends React.Component{
         else{//New request must be made since the cache of next tickets is empty.
             this.setNewTickets()
         }
+        
 
     }
 
@@ -113,7 +114,15 @@ class TicketViewer extends React.Component{
                         </div>
                     </div>
                     :
-                    <div><Alert>HERE</Alert></div>
+                    <div>
+                        <div class="jumbotron jumbotron-fluid" style={{"height":"50vh"}}>
+                            <div class="container">
+                                <center>
+                                <h2>Loading<Spinner animation="grow" /></h2>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
                     }
                 </div>
 
