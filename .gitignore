@@ -1,5 +1,8 @@
 /*.json
 Backend/node_modules/
+frontend/node_modules/
 *.bat
 *.txt
 *.pdf
+.vscode/
+.deployment

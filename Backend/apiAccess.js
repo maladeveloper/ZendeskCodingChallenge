@@ -46,16 +46,17 @@ function getNextLink(urlData){
 }
 
 function processTickets(ticketsData){
-	var ticketSummarised = {}; 
+	var ticketSummarised = []; 
 
 	for(ticket of ticketsData){
 		
-		ticketSummarised[ticket[processTicketVars.id]] = {};
+		var ticketObj = {}
 		
 		for(dataKey of processTicketVars.dataCollect){
 
-			ticketSummarised[ticket[processTicketVars.id]][dataKey] = ticket[dataKey]
+			ticketObj[dataKey] = ticket[dataKey]
 		}
+		ticketSummarised.push(ticketObj)
 	}
 	return ticketSummarised
 

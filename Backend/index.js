@@ -1,14 +1,16 @@
 const express = require("express")
+var cors = require('cors');
+
 const app = express()
-const { url } = require("inspector");
+app.use(cors())
 //Vars 
-const port = 3000; 
+const port = 3001; 
 var apiAccess = require("./apiAccess");
 
 // define the first route
 app.get("/tickets", async function (req, res) {
   
-  var afterUrl = req.query.afterUrl
+  var afterUrl = (req.query.afterUrl ? req.query.afterUrl : false)
   var ticketNums = req.query.ticketNums
 
   var data = await apiAccess.getTickets(ticketNums, afterUrl)
