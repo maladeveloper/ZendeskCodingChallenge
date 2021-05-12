@@ -21,7 +21,7 @@ class TicketPane extends React.Component{
         return(
             <>
   
-                <div>
+                <div style={{height:"425px", overflow:"auto"}}>
 
                 <Accordion>
                     {

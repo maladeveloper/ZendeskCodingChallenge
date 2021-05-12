@@ -13,7 +13,6 @@ const processTicketVars = {
         "id": (data) =>  data.toString() , //functions the specific data needs to be passed to to make it clean and of the specific type 
         "subject": (data) => data, 
         "description":(data) => data,
-        "created_at": (data) => Date(data).toLocaleString().split("GMT")[0],
         "updated_at":(data) => Date(data).toLocaleString().split("GMT")[0],
         "type": (data) => (data ? data : "Is of no type."), 
         "priority":(data) => (data ? data : "Has no priority."), 

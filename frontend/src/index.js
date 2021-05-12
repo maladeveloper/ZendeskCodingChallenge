@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TicketViewer from "./Scripts/TicketViewer";
+import HomePage from "./Scripts/HomePage";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TicketViewer />
+    <HomePage />
   </React.StrictMode>,
   document.getElementById('root')
 );
