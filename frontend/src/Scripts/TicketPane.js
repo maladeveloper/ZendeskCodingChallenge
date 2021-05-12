@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card'
 
 class TicketPane extends React.Component{
 
@@ -20,11 +21,31 @@ class TicketPane extends React.Component{
             <>
   
                 <div>
-                {
-                    this.props.tickets.map((tickData, index) =>{
-                        return (<p>{tickData.subject}</p>)
-                    })
-                }
+
+                <Accordion>
+                    {
+                        this.props.tickets.map((tickData, index) =>{
+                            console.log(index)
+                            return (
+                                <Card>
+                                    <Card.Header>
+                                        <center>
+                                        <Accordion.Toggle as={Button} variant="link" eventKey={tickData.id}>
+                                            {tickData.subject}
+                                        </Accordion.Toggle>
+                                        </center>
+                                    </Card.Header>
+                                    <Accordion.Collapse eventKey={tickData.id}>
+                                        <Card.Body>
+                                            {tickData.description}
+                                        </Card.Body>
+                                    </Accordion.Collapse>
+                                </Card>
+                                
+                            )
+                        })
+                    }
+                </Accordion>
                 </div>
 
             </>

@@ -3,6 +3,7 @@ import {webFuncInteraction, backendWebVars} from "./backendInterface";
 import {NUM_TICKETS} from "../Variables";
 import Button from 'react-bootstrap/Button';
 import TicketPane from './TicketPane';
+import Alert from 'react-bootstrap/Alert'
 
 
 class TicketViewer extends React.Component{
@@ -113,7 +114,7 @@ class TicketViewer extends React.Component{
                         }    
                     </div>
                     :
-                    <div>Loading</div>
+                    <div><Alert>HERE</Alert></div>
                     }
                 </div>
 

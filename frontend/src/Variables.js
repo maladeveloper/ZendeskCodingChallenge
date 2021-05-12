@@ -1,1 +1,1 @@
-export const NUM_TICKETS = 25;
+export const NUM_TICKETS = 5;
