@@ -102,16 +102,15 @@ class TicketViewer extends React.Component{
                     ?
                     <div>
                         <div><TicketPane tickets={this.state.tickets}/></div>
-                        {//Only can get next tickets if tickets in nextTickets cache or has next link
-                        ((this.state.nextTickets.length > 0) || this.state.hasMore) 
-                            &&
-                            <Button onClick={this.getNext} variant="outline-primary">Next</Button>
-                        }
-                        {//Only can get previous tickets if tickets in prevTickets cache
-                        this.state.prevTickets.length >= NUM_TICKETS
-                            &&
-                            <Button onClick={this.getPrev} variant="outline-primary">Previous</Button>
-                        }    
+                        
+                        <div style={{display:"flex",flexWrap: "wrap",flexDirection:"row"}}>
+                            <div className={"navigation-button"}>
+                                <Button  style={{margin:"10px"}}  disabled={!(this.state.prevTickets.length >= NUM_TICKETS)} onClick={this.getPrev} variant="outline-primary">Previous</Button>
+                            </div>
+                            <div className={"navigation-button"}>
+                                <Button style={{margin:"10px"}} disabled={!((this.state.nextTickets.length > 0) || this.state.hasMore)} onClick={this.getNext} variant="outline-primary">Next</Button>                      
+                            </div>
+                        </div>
                     </div>
                     :
                     <div><Alert>HERE</Alert></div>

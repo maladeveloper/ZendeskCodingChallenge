@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
+import SingleTicket from "./SingleTicket";
 
 class TicketPane extends React.Component{
 
@@ -30,14 +31,16 @@ class TicketPane extends React.Component{
                                 <Card>
                                     <Card.Header>
                                         <center>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey={tickData.id}>
-                                            {tickData.subject}
+                                        <Accordion.Toggle as={Button} variant="link" eventKey={tickData.Id}>
+                                            {tickData.Subject}
                                         </Accordion.Toggle>
                                         </center>
                                     </Card.Header>
-                                    <Accordion.Collapse eventKey={tickData.id}>
+                                    <Accordion.Collapse eventKey={tickData.Id}>
                                         <Card.Body>
-                                            {tickData.description}
+                                            
+                                            <SingleTicket ticket={tickData}/>
+                                            
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>

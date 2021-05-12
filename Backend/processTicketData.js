@@ -9,7 +9,17 @@ const processDataVars = {
 
 const processTicketVars = {
 	id: "id",
-	dataCollect: ["id", "subject", "description", "created_at", "updated_at", "type", "priority", "status"]
+	dataCollect: {
+        "id": (data) =>  data.toString() , //functions the specific data needs to be passed to to make it clean and of the specific type 
+        "subject": (data) => data, 
+        "description":(data) => data,
+        "created_at": (data) => Date(data).toLocaleString().split("GMT")[0],
+        "updated_at":(data) => Date(data).toLocaleString().split("GMT")[0],
+        "type": (data) => (data ? data : "Is of no type."), 
+        "priority":(data) => (data ? data : "Has no priority."), 
+        "status":(data) => data,
+    },
+    keyJoiner:"_" 
 }
 //
 
@@ -34,6 +44,13 @@ function getNextLink(urlData){
 	return decodedUrl.split(getTicketVars.pageAfter).pop().split(getTicketVars.joiner)[0]
 }
 
+function prettifyKey(keyString){
+    keyString = keyString.replace(processTicketVars.keyJoiner, " ");
+
+    return keyString.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+}
+
+
 function processTickets(ticketsData){
 	var ticketSummarised = []; 
 
@@ -41,9 +58,9 @@ function processTickets(ticketsData){
 		
 		var ticketObj = {}
 		
-		for(dataKey of processTicketVars.dataCollect){
+		for(var [dataKey,cleanFunc] of Object.entries(processTicketVars.dataCollect)){
 
-			ticketObj[dataKey] = ticket[dataKey]
+			ticketObj[prettifyKey(dataKey)] = cleanFunc(ticket[dataKey])
 		}
 		ticketSummarised.push(ticketObj)
 	}
@@ -57,7 +74,6 @@ function processData(data){
 
 	for(var key in processDataVars){
 		processedData[key] = processDataVars[key](data)
-		//if(key=="nextLink"){ console.log(processedData[key])}
 	}
 
 	return processedData;
