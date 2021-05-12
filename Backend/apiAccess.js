@@ -1,84 +1,16 @@
+var getTicketVars = require("./sharedVariables").getTicketVars;
+var processData = require("./processTicketData").processData;
+
 var http = require('https');
-const fetch = require("node-fetch");
 //Vars
 const BASE_URL = "https://malavansrikumar.zendesk.com"
 const OKAY_STATUS = 200;
 const email = "srikumar.malavan@gmail.com"; 
 const token = "OzRDPQ5fhG9NGpxDywBvyIdz0dR71Stx48dmLSrs";
-const getTicketVars = {
-	path: "/api/v2/tickets.json?",
-	pageNums : "page[size]=",
-	pageAfter:"page[after]=",
-	joiner: "&"
-
-}
-const processDataVars = {
-	"tickets":	(data) =>processTickets( followJsonDict(data, ["tickets"])), //Has the path in json to the relavant data
-	"nextLink":(data) => getNextLink(followJsonDict(data, ["links","next"])),
-	"hasMore": (data) => followJsonDict(data, ["meta", "has_more"])
-}
-
-const processTicketVars = {
-	id: "id",
-	dataCollect: ["id", "subject", "description", "created_at", "updated_at", "type", "priority", "status"]
-}
-//
-
-function followJsonDict(jsonData, pathArray){
-	var path = Array.from(pathArray)
-	var data = jsonData; 
-
-	while(path.length > 0){
-		
-		data = data[path[0]]
-
-		path.shift()
-	}
-
-	return data;
-}
-
-function getNextLink(urlData){
-
-	var decodedUrl = decodeURI(urlData)
-
-	return decodedUrl.split(getTicketVars.pageAfter).pop().split(getTicketVars.joiner)[0]
-}
-
-function processTickets(ticketsData){
-	var ticketSummarised = []; 
-
-	for(ticket of ticketsData){
-		
-		var ticketObj = {}
-		
-		for(dataKey of processTicketVars.dataCollect){
-
-			ticketObj[dataKey] = ticket[dataKey]
-		}
-		ticketSummarised.push(ticketObj)
-	}
-	return ticketSummarised
-
-	
-}
-
-
-function processData(data){
-	var processedData = {}
-
-	for(var key in processDataVars){
-		processedData[key] = processDataVars[key](data)
-		//if(key=="nextLink"){ console.log(processedData[key])}
-	}
-
-	return processedData;
 
 
 
-}
-
-async function getTickets(ticketNums, afterUrl){
+async function requestTickets(ticketNums, afterUrl){
 	var path; 
 
 	path = getTicketVars.path + getTicketVars.pageNums + ticketNums;
@@ -86,9 +18,6 @@ async function getTickets(ticketNums, afterUrl){
 	if(afterUrl){
 		path += getTicketVars.joiner + getTicketVars.pageAfter + afterUrl
 	}
-
-	console.log(path)
-
 
 	var data = await makeRequest(path);
 	var processedData = processData(data);
@@ -100,7 +29,7 @@ function makeRequest(path){
 	return new Promise((resolve, reject) =>{
 
 		var request = http.request(
-			"https://malavansrikumar.zendesk.com", 
+			BASE_URL, 
 			{
 				'path': path,
 				'auth': email + "/token:" + token
@@ -124,4 +53,4 @@ function makeRequest(path){
 }
 
 
-module.exports = {getTickets: getTickets};
+module.exports = {requestTickets: requestTickets};
