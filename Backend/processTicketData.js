@@ -20,6 +20,7 @@ const processTicketVars = {
     },
     keyJoiner:"_" 
 }
+success_key = "success";
 //
 
 function followJsonDict(jsonData, pathArray){
@@ -68,12 +69,46 @@ function processTickets(ticketsData){
 	
 }
 
+function allKeysHaveVal(obj){
+	var truthArr = [];
+	function recurseSearch(obj, truthArr){
+		Object.keys(obj).forEach(key =>{
+			const val = obj[key];
+			if(typeof(val) === 'object' && val !== null){
+
+				recurseSearch(val, truthArr)	
+			}
+			else{
+				if(val == undefined || val==null){
+					truthArr.push(false)
+					return
+				}
+			}
+		})
+	}
+	recurseSearch(obj, truthArr)
+	if (truthArr.length > 0){
+		return false
+	}
+	return true
+}
+
+
 function processData(data){
 	var processedData = {}
 
 	for(var key in processDataVars){
 		processedData[key] = processDataVars[key](data)
 	}
+	
+	processedData[success_key] = false
+	
+	//Check if all the keys have values which are not undefined or null and give success key based on that.
+	if(allKeysHaveVal(processedData)){
+		
+		processedData[success_key] = true
+	}
+	
 
 	return processedData;
 }
