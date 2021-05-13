@@ -1,5 +1,5 @@
-const BASE_URL = 'https://zendesk-challenge-backend.azurewebsites.net/'
-//const BASE_URL = "http://127.0.0.1:3001/"
+//const BASE_URL = 'https://zendesk-challenge-backend.azurewebsites.net/'
+const BASE_URL = "http://127.0.0.1:3001/"
 
 //Vars
 const joiner = "&";

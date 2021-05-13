@@ -1,5 +1,7 @@
 var getTicketVars = require("./sharedVariables").getTicketVars;
 var processData = require("./processTicketData").processData;
+var successKey = require("./sharedVariables").successKey;
+
 
 var http = require('https');
 //Vars
@@ -20,8 +22,14 @@ async function requestTickets(ticketNums, afterUrl){
 	}
 
 	var data = await makeRequest(path);
-	var processedData = processData(data);
-	return processedData
+
+	//If there has been an error with the api and data is not received
+	//console.log(data)
+	if (!data){
+		return {[successKey]:false}
+	}
+	 
+	return processData(data);
 }
 
 function makeRequest(path){
@@ -35,6 +43,12 @@ function makeRequest(path){
 				'auth': email + "/token:" + token
 			}, 
 			(response) => {
+				console.log(response.statusCode)
+				//Set as false if correct code is not given
+				if (response.statusCode !== OKAY_STATUS){
+					resolve(false)
+				}
+
 				var chunks = []
 				response.setEncoding('utf8');
 
@@ -44,6 +58,10 @@ function makeRequest(path){
 				response.on("end", ()=>{
 
 					resolve(JSON.parse(chunks.join("")));
+				})
+				response.on("error", ()=>{
+
+					resolve(false)
 				})
 
 			}

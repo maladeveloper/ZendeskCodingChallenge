@@ -15,7 +15,8 @@ class TicketViewer extends React.Component{
             prevTickets:[], 
             tickets: false,
             nextLink: false, 
-            hasMore:false
+            hasMore:false, 
+            success: true,
         }
 
         this.getNext = this.getNext.bind(this);
@@ -96,14 +97,16 @@ class TicketViewer extends React.Component{
         console.log("At Render:")
         console.log(this.state)
         return(
-            <>
-  
+            <div>
+                {this.state.success //Only proceed if there is success with API access.
+                ?
                 <div>
-                    { this.state.tickets 
+                    {this.state.tickets //Only can show tickets once they have loaded.
                     ?
                     <div>
-                        <div><TicketPane tickets={this.state.tickets}/></div>
-                        
+                        <div>
+                            <TicketPane tickets={this.state.tickets}/>
+                        </div>
                         <div style={{display:"flex",flexWrap: "wrap",flexDirection:"row"}}>
                             <div className={"navigation-button"}>
                                 <Button  style={{margin:"10px"}}  disabled={!(this.state.prevTickets.length >= NUM_TICKETS)} onClick={this.getPrev} variant="outline-primary">Previous</Button>
@@ -125,13 +128,21 @@ class TicketViewer extends React.Component{
                     </div>
                     }
                 </div>
-
-            </>
+                :
+                <div>
+                    <div class="jumbotron jumbotron-fluid" style={{"height":"50vh", "backgroundColor":"red"}}>
+                        <div class="container">
+                            <center>
+                            <h2>Error</h2>
+                            <p><bold>There has been an error accessing the data for the tickets. Please refresh or try again later.</bold></p>
+                            </center>
+                        </div>
+                    </div>
+                </div>  
+                }
+            </div>
         )
     }
-
-
-
 }
 
 export default TicketViewer;

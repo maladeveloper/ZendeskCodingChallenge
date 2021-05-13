@@ -1,4 +1,5 @@
 var getTicketVars = require("./sharedVariables").getTicketVars;
+var successKey = require("./sharedVariables").successKey;
 
 //Vars
 const processDataVars = {
@@ -20,7 +21,6 @@ const processTicketVars = {
     },
     keyJoiner:"_" 
 }
-success_key = "success";
 //
 
 function followJsonDict(jsonData, pathArray){
@@ -62,6 +62,7 @@ function processTickets(ticketsData){
 
 			ticketObj[prettifyKey(dataKey)] = cleanFunc(ticket[dataKey])
 		}
+		//console.log(ticketObj)
 		ticketSummarised.push(ticketObj)
 	}
 	return ticketSummarised
@@ -69,6 +70,12 @@ function processTickets(ticketsData){
 	
 }
 
+/*
+Checks if all values in the object that is being passed to the front end 
+has a value that is not undefined or null (even though JSON parsing removes 
+undefined values, there is still data that is missing and thus needs to fail 
+FAST)
+*/
 function allKeysHaveVal(obj){
 	var truthArr = [];
 	function recurseSearch(obj, truthArr){
@@ -101,12 +108,12 @@ function processData(data){
 		processedData[key] = processDataVars[key](data)
 	}
 	
-	processedData[success_key] = false
+	processedData[successKey] = false
 	
 	//Check if all the keys have values which are not undefined or null and give success key based on that.
 	if(allKeysHaveVal(processedData)){
 		
-		processedData[success_key] = true
+		processedData[successKey] = true
 	}
 	
 

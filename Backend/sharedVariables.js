@@ -1,3 +1,6 @@
+const successKey = "success";
+
+
 const getTicketVars = {
 	path: "/api/v2/tickets.json?",
 	pageNums : "page[size]=",
@@ -5,4 +8,5 @@ const getTicketVars = {
 	joiner: "&"
 
 }
-module.exports = {getTicketVars: getTicketVars};
+
+module.exports = {getTicketVars: getTicketVars, successKey:successKey};
