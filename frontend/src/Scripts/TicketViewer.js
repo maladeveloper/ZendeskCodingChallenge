@@ -32,9 +32,18 @@ class TicketViewer extends React.Component{
                 afterUrl: (this.state.hasMore ? this.state.nextLink : false)
             }
         ).then((ticketsData) =>{
-            this.setState({
-                ...ticketsData
-            })
+
+            if(!ticketsData){
+
+                this.setState({
+                    success: false
+                })
+            }
+            else{
+                this.setState({
+                    ...ticketsData
+                })
+            }
         })
     
 
@@ -94,8 +103,6 @@ class TicketViewer extends React.Component{
     
 
     render(){
-        console.log("At Render:")
-        console.log(this.state)
         return(
             <div>
                 {this.state.success //Only proceed if there is success with API access.
@@ -118,8 +125,8 @@ class TicketViewer extends React.Component{
                     </div>
                     :
                     <div>
-                        <div class="jumbotron jumbotron-fluid" style={{"height":"50vh"}}>
-                            <div class="container">
+                        <div className="jumbotron jumbotron-fluid" style={{"height":"50vh"}}>
+                            <div className="container">
                                 <center>
                                 <h2>Loading<Spinner animation="grow" /></h2>
                                 </center>
@@ -130,11 +137,11 @@ class TicketViewer extends React.Component{
                 </div>
                 :
                 <div>
-                    <div class="jumbotron jumbotron-fluid" style={{"height":"50vh", "backgroundColor":"red"}}>
-                        <div class="container">
+                    <div className="jumbotron jumbotron-fluid" style={{"height":"50vh", "backgroundColor":"red"}}>
+                        <div className="container">
                             <center>
                             <h2>Error</h2>
-                            <p><bold>There has been an error accessing the data for the tickets. Please refresh or try again later.</bold></p>
+                            <p>There has been an error accessing the data for the tickets. Please refresh or try again later</p>
                             </center>
                         </div>
                     </div>

@@ -24,7 +24,6 @@ async function requestTickets(ticketNums, afterUrl){
 	var data = await makeRequest(path);
 
 	//If there has been an error with the api and data is not received
-	//console.log(data)
 	if (!data){
 		return {[successKey]:false}
 	}
@@ -43,7 +42,6 @@ function makeRequest(path){
 				'auth': email + "/token:" + token
 			}, 
 			(response) => {
-				console.log(response.statusCode)
 				//Set as false if correct code is not given
 				if (response.statusCode !== OKAY_STATUS){
 					resolve(false)

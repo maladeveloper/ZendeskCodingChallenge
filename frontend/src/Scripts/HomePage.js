@@ -4,10 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 
 class HomePage extends React.Component{
 
-    constructor(props){super(props)}
-
-
-
     render(){
 
         return(
@@ -17,10 +13,10 @@ class HomePage extends React.Component{
                             <i>Malavan Zendesk Challenge</i> 
                         </Navbar.Brand>
                     </Navbar>
-                    <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <h1 class="display-4">Zendesk Ticket Viewer</h1>
-                        <p class="lead"><bold>Made by Malavan Srikumar</bold></p>
+                    <div className="jumbotron jumbotron-fluid">
+                    <div className="container">
+                        <h1 className="display-4">Zendesk Ticket Viewer</h1>
+                        <p className="lead">Made by Malavan Srikumar</p>
                     </div>
                     </div>
                 <div className={"page-item"}>

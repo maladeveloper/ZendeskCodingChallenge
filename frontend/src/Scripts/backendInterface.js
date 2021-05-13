@@ -19,13 +19,18 @@ export var webFuncInteraction = (backendWebVar, argObject) =>{
 
     return new Promise((resolve)=>{
 
-        console.log(backendWebVar.URL(argObject))
-
         //Make a fetch request for the data
         fetch(backendWebVar.URL(argObject)).then(response => response.json()).then(data => 
             
             //Now resolve with the data that was returned 
             resolve(data)
-        );
+        
+        //If the api refuses to get data.
+        ).catch((error) =>{
+            
+            resolve(false)
+        })
+        
+        ;
     })
 }
