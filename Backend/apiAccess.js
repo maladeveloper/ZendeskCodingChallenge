@@ -1,12 +1,12 @@
 var getTicketVars = require("./sharedVariables").getTicketVars;
 var processData = require("./processTicketData").processData;
 var successKey = require("./sharedVariables").successKey;
+var OKAY_STATUS = require("./sharedVariables").OKAY_STATUS;
 
 
 var http = require('https');
 //Vars
 const BASE_URL = "https://malavansrikumar.zendesk.com"
-const OKAY_STATUS = 200;
 const email = "srikumar.malavan@gmail.com"; 
 const token = "OzRDPQ5fhG9NGpxDywBvyIdz0dR71Stx48dmLSrs";
 

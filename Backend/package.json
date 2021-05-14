@@ -4,15 +4,18 @@
   "description": "Backend for the zendesk coding challenge application.",
   "main": "index.js",
   "dependencies": {
+    "chai": "^4.3.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
+    "mocha": "^8.4.0",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec Testing/test.js",
     "start": "nodemon index.js"
   },
   "author": "Malavan Srikumar",

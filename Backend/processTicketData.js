@@ -1,9 +1,11 @@
 var getTicketVars = require("./sharedVariables").getTicketVars;
 var successKey = require("./sharedVariables").successKey;
+var ticketKey = require("./sharedVariables").ticketKey;
+
 
 //Vars
 const processDataVars = {
-	"tickets":	(data) =>processTickets( followJsonDict(data, ["tickets"])), //Has the path in json to the relavant data
+	[ticketKey]:	(data) =>processTickets( followJsonDict(data, ["tickets"])), //Has the path in json to the relavant data
 	"nextLink":(data) => getNextLink(followJsonDict(data, ["links","next"])),
 	"hasMore": (data) => followJsonDict(data, ["meta", "has_more"])
 }
@@ -14,7 +16,7 @@ const processTicketVars = {
         "id": (data) =>  data.toString() , //functions the specific data needs to be passed to to make it clean and of the specific type 
         "subject": (data) => data, 
         "description":(data) => data,
-        "updated_at":(data) => Date(data).toLocaleString().split("GMT")[0],
+        "updated_at":(data) => new Date(data).toUTCString(),
         "type": (data) => (data ? data : "Is of no type."), 
         "priority":(data) => (data ? data : "Has no priority."), 
         "status":(data) => data,

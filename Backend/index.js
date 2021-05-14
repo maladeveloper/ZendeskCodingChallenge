@@ -1,11 +1,11 @@
 const express = require("express")
 var cors = require('cors');
 var apiAccess = require("./apiAccess");
+var port = require("./sharedVariables").port;
+
+
 const app = express()
 app.use(cors())
-//Vars 
-const port = 3001; 
-//
 
 app.get("/tickets", async function (req, res) {
   
@@ -18,5 +18,7 @@ app.get("/tickets", async function (req, res) {
 })
 
 // start the server listening for requests
-app.listen(process.env.PORT || port, 
+var server = app.listen(process.env.PORT || port, 
 	() => console.log(`Server is running...http://localhost:${port}`));
+
+  module.exports = server; 

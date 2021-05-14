@@ -1,4 +1,9 @@
+const port = 3001;
+const OKAY_STATUS = 200;
+
+
 const successKey = "success";
+const ticketKey = "tickets"
 
 
 const getTicketVars = {
@@ -9,4 +14,5 @@ const getTicketVars = {
 
 }
 
-module.exports = {getTicketVars: getTicketVars, successKey:successKey};
+
+module.exports = {getTicketVars: getTicketVars, successKey:successKey, port:port, OKAY_STATUS:OKAY_STATUS, ticketKey:ticketKey};
