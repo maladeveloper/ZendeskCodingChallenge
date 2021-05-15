@@ -25,6 +25,7 @@ class TicketViewer extends React.Component{
     }
 
     setNewTickets(){
+        
         this.setState({tickets:false})
         webFuncInteraction(backendWebVars.GET_TICKS, 
             {
