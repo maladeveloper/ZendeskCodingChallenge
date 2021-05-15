@@ -61,3 +61,19 @@ cd frontend
 npm install
 npm test
 ```
+## System Architecture
+### End-To-End Architecture
+The application uses a modified version of Model-View-Architecture (MVC) wherein the "Backend" encapsulates the duties of the Model and the Controller with the "Frontend" taking on the duties of the View. 
+
+The *Frontend* uses the React libray and runs on NodeJS, whilst the *Backend* uses the Express framework which also runs on NodeJS. This *"JavaScript Everywhere"* approach allows for seamlesss integration between the two parts.
+
+To summarise the roles in the end-to-end application, the Express Backend cleans processes data from the Zendesk API and present this via API call to the React Frontend.
+
+### Frontend Architecture
+
+The image below shows the high-level overview of how the frontend is designed (even though entities are represented as class diagrams, they are infact functions as functional programming was used).
+
+### Backend Architecture 
+The image below shows the high level overview of how the backend is designed (the class dagrams shown are React Classes and dont direct correlate to standadrd classes i.e Java Classes).
+
+
