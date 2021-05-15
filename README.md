@@ -1,4 +1,4 @@
-## Running the application
+## Running the Application
 
 To run the application make sure the machine used to run the application has *Node* and its associated package manager *npm* is installed and in the PATH of the terminal.
 
@@ -33,4 +33,5 @@ http://localhost:3000/
 ```
 8. The application should be serving at this URL and working correctly 😃
 
-## System Architecture
+## Testing the Application
+_Follow these steps after the application is up and running following the steps outlined in "Running the Application" section above._
