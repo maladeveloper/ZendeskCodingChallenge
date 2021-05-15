@@ -1,6 +1,9 @@
 import React from 'react';
 
-
+/**
+ * Returns a nice formatted ticket based on the ticket data 
+ * for a single ticket.
+ */
 class SingleTicket extends React.Component{
 
     render(){

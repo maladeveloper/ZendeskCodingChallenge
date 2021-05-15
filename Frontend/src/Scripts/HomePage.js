@@ -2,6 +2,10 @@ import React from 'react';
 import TicketViewer from './TicketViewer';
 import Navbar from 'react-bootstrap/Navbar';
 
+/**
+ * Entry point for the application, with it showing the welcome messange
+ * and the ticket viewer.
+ */
 class HomePage extends React.Component{
 
     render(){

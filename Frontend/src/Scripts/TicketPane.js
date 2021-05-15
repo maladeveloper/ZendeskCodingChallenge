@@ -4,6 +4,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import SingleTicket from "./SingleTicket";
 
+/**
+ * The ticket pane which shows a list of all the tickets.
+ */
 class TicketPane extends React.Component{
 
     render(){

@@ -5,6 +5,13 @@ import Button from 'react-bootstrap/Button';
 import TicketPane from './TicketPane';
 import Spinner from 'react-bootstrap/Spinner';
 
+/**
+ * High level component which displays the either the loading/ticket/error 
+ * pane depending on the sitation. It makes a reuqest to the backend to get 
+ * all the tickets per tickets to display at a time (NUM_TICKETS).
+ * It keeps API calls to the minimum through the use of caches which 
+ * save any tickets that have been requested from the backend previously.
+ */
 class TicketViewer extends React.Component{
 
     constructor(props){
@@ -24,6 +31,9 @@ class TicketViewer extends React.Component{
         this.setNewTickets = this.setNewTickets.bind(this);
     }
 
+    /**
+     * Makes the GET request for the tickets.
+     */
     setNewTickets(){
         
         this.setState({tickets:false})
@@ -55,6 +65,11 @@ class TicketViewer extends React.Component{
 
     }
 
+    /**
+     * Places the current tickets in "prevTickets" and fills it with the tickets from either 
+     * the "nextTickets" cache (if the NUM_TICKET amount of tickets is present) OR
+     * makes a request for new tickets from the backend.
+     */
     getNext(){
 
         //Append current tickets to the prevTickets cache and then make request or get from nextTickets cache for next tickets
@@ -87,6 +102,10 @@ class TicketViewer extends React.Component{
 
     }
 
+    /**
+     * Places the current tickets in the "nextTickets" cache, then fills itself with the 
+     * next NUM_TICKETS amount from "prevTickets cache".
+     */
     getPrev(){
         var ticketsCopy = JSON.parse(JSON.stringify(this.state.tickets))
         var nextTicketsCopy = JSON.parse(JSON.stringify(this.state.nextTickets))

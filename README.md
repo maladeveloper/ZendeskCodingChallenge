@@ -26,7 +26,7 @@ npm start
 5. Now that the backend is up and running navigate to the frontend folder.
 ```
 cd .. 
-cd frontend
+cd Frontend
 ```
 6. Run the following commands. 
 ```
@@ -56,7 +56,7 @@ npm test
 ### Testing Frontend
 1. Navigate to the _frontend_ folder. 
 ```
-cd frontend
+cd Frontend
 ```
 2. Run the following commands.
 ```
