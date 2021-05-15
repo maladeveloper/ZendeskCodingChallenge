@@ -69,6 +69,11 @@ The *Frontend* uses the React libray and runs on NodeJS, whilst the *Backend* us
 
 To summarise the roles in the end-to-end application, the Express Backend cleans processes data from the Zendesk API and present this via API call to the React Frontend.
 
+<center>
+
+![alt text](./static/end_to_end_design.png)
+
+</center>
 ### Frontend Architecture
 
 The image below shows the high-level overview of how the frontend is designed (even though entities are represented as class diagrams, they are infact functions as functional programming was used).
