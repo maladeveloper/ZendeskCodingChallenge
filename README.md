@@ -2,6 +2,8 @@
 Made an application to display a list of tickets related to a specific account, paged by 25 tickets per page. 
 
 **The deployed applcation can be found here: https://zd-ticket-viewer.herokuapp.com/**
+
+(takes approx 1min to load as free heroku/azure servers were used.)
 ## Running the Application Locally
 
 To run the application locally make sure the machine used to run the application has *Node* and its associated package manager *npm* installed and in the PATH of the terminal.
@@ -62,23 +64,15 @@ npm install
 npm test
 ```
 ## System Architecture
-### End-To-End Architecture
 The application uses a modified version of Model-View-Architecture (MVC) wherein the "Backend" encapsulates the duties of the Model and the Controller with the "Frontend" taking on the duties of the View. 
 
 The *Frontend* uses the React libray and runs on NodeJS, whilst the *Backend* uses the Express framework which also runs on NodeJS. This *"JavaScript Everywhere"* approach allows for seamlesss integration between the two parts.
 
 To summarise the roles in the end-to-end application, the Express Backend cleans processes data from the Zendesk API and present this via API call to the React Frontend.
 
-<center>
+<p align="center">
+  <img width="250" height="500" src="./static/end_to_end_design.png">
+</p>
 
-![alt text](./static/end_to_end_design.png)
-
-</center>
-### Frontend Architecture
-
-The image below shows the high-level overview of how the frontend is designed (even though entities are represented as class diagrams, they are infact functions as functional programming was used).
-
-### Backend Architecture 
-The image below shows the high level overview of how the backend is designed (the class dagrams shown are React Classes and dont direct correlate to standadrd classes i.e Java Classes).
 
 

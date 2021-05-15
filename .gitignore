@@ -5,4 +5,5 @@ Frontend/node_modules/
 *.txt
 *.pdf
 .vscode/
-.deployment
+*.deployment
+*.drawio
