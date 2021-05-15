@@ -3,13 +3,14 @@ var successKey = require("./sharedVariables").successKey;
 var ticketKey = require("./sharedVariables").ticketKey;
 
 
-//Vars
+////Vars
+//The variables that has the keys for the keys of a raw data.
 const processDataVars = {
 	[ticketKey]:	(data) =>processTickets( followJsonDict(data, ["tickets"])), //Has the path in json to the relavant data
 	"nextLink":(data) => getNextLink(followJsonDict(data, ["links","next"])),
 	"hasMore": (data) => followJsonDict(data, ["meta", "has_more"])
 }
-
+//The variables that has the keys for the keys of a raw ticket.
 const processTicketVars = {
 	id: "id",
 	dataCollect: {
@@ -23,8 +24,16 @@ const processTicketVars = {
     },
     keyJoiner:"_" 
 }
-//
+////
 
+/**
+ * Follow the path specified by array to the object to find the data at its 
+ * end. 
+ * e.g pathArray=["Hello", "World"], jsonData={"Hello":{"World": 5}} would return 5.
+ * @param {Object} jsonData 		: The Object to traverse.
+ * @param {Array<String>} pathArray : The path to follow to find data.
+ * @returns 
+ */
 function followJsonDict(jsonData, pathArray){
 	var path = Array.from(pathArray)
 	var data = jsonData; 
@@ -39,6 +48,13 @@ function followJsonDict(jsonData, pathArray){
 	return data;
 }
 
+/**
+ * Get the link data (specific string) from the "nextLink" data from the
+ * URL string that is originally in the raw data.
+ * e.g https://malavansrikumar.zendesk.com/api/v2/tickets.json?page%5Bafter%5D=eyJvIjoibmljZV9pZCIsInYiOiJhUUlBQUFBQUFBQUEifQ%3D%3D&page%5Bsize%5D=2 -> eyJvIjoibmljZV9pZCIsInYiOiJhUUlBQUFBQUFBQUEifQ%3D%3D
+ * @param {*} urlData 
+ * @returns 
+ */
 function getNextLink(urlData){
 
 	var decodedUrl = decodeURI(urlData)
@@ -46,13 +62,23 @@ function getNextLink(urlData){
 	return decodedUrl.split(getTicketVars.pageAfter).pop().split(getTicketVars.joiner)[0]
 }
 
+/**
+ * Makes the keys from the raw data into a user friendly format.
+ * Does this by removing all the underscores and capitalising the words.
+ * @param {String} keyString - Raw key data. 
+ * @returns  - Pretty formatted key.
+ */
 function prettifyKey(keyString){
     keyString = keyString.replace(processTicketVars.keyJoiner, " ");
 
     return keyString.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
 }
 
-
+/**
+ * Processes the array of raw tickets.
+ * @param {Array<Object>} ticketsData : Array of raw Tickets. 
+ * @returns  - Array of processed tickets.
+ */
 function processTickets(ticketsData){
 	var ticketSummarised = []; 
 
@@ -72,12 +98,15 @@ function processTickets(ticketsData){
 	
 }
 
-/*
-Checks if all values in the object that is being passed to the front end 
-has a value that is not undefined or null (even though JSON parsing removes 
-undefined values, there is still data that is missing and thus needs to fail 
-FAST)
-*/
+
+/**
+ * Checks if all values in the object that is being passed to the front end 
+ *has a value that is not undefined or null (even though JSON parsing removes 
+ *undefined values, there is still data that is missing and thus needs to fail 
+ *FAST)
+ * @param {Object} obj: The object with the relavant data to check.
+ * @returns - True/False whether object has data for all the keys.
+ */
 function allKeysHaveVal(obj){
 	var truthArr = [];
 	function recurseSearch(obj, truthArr){
@@ -103,6 +132,11 @@ function allKeysHaveVal(obj){
 }
 
 
+/**
+ * Process all the data returned by the API.
+ * @param {Object} data : Unprocessed raw data from the zendesk API.
+ * @returns  - Processed data object.
+ */
 function processData(data){
 	var processedData = {}
 

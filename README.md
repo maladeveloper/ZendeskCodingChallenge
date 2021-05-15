@@ -1,7 +1,7 @@
 # Zendesk Coding Challenge
 Made an application to display a list of tickets related to a specific account, paged by 25 tickets per page. 
 
-**The deployed applcation can be found here: https://zd-ticket-viewer.herokuapp.com/**
+**The deployed application can be found here: https://zd-ticket-viewer.herokuapp.com/**
 
 (takes approx 1min to load as free heroku/azure servers were used.)
 ## Running the Application Locally
