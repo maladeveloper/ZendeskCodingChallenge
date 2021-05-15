@@ -1,0 +1,25 @@
+{
+    "tickets": [
+      {
+        "Id": "1",
+        "Subject": "Sample ticket: Meet the ticket",
+        "Description": "Hi Malavan,\n\nThis is your first ticket. Ta-da! Any customer request sent to your supported channels (email, chat, voicemail, web form, and tweet) will become a Support ticket, just like this one. Respond to this ticket by typing a message and clicking Submit. You can also see how an email becomes a ticket by emailing your new account, support@malavansrikumar.zendesk.com. Your ticket will appear in ticket views.\n\nThat's the ticket on tickets. If you want to learn more, check out: \nhttps://support.zendesk.com/hc/en-us/articles/203691476\n",
+        "Updated At": "Tue, 04 May 2021 10:40:29 GMT",
+        "Type": "incident",
+        "Priority": "normal",
+        "Status": "open"
+      },
+      {
+        "Id": "2",
+        "Subject": "velit eiusmod reprehenderit officia cupidatat",
+        "Description": "Aute ex sunt culpa ex ea esse sint cupidatat aliqua ex consequat sit reprehenderit. Velit labore proident quis culpa ad duis adipisicing laboris voluptate velit incididunt minim consequat nulla. Laboris adipisicing reprehenderit minim tempor officia ullamco occaecat ut laborum.\n\nAliquip velit adipisicing exercitation irure aliqua qui. Commodo eu laborum cillum nostrud eu. Mollit duis qui non ea deserunt est est et officia ut excepteur Lorem pariatur deserunt.",
+        "Updated At": "Tue, 04 May 2021 10:50:18 GMT",
+        "Type": "Is of no type.",
+        "Priority": "Has no priority.",
+        "Status": "open"
+      }
+    ],
+    "nextLink": "eyJvIjoibmljZV9pZCIsInYiOiJhUUlBQUFBQUFBQUEifQ%3D%3D",
+    "hasMore": true,
+    "success": true
+  }
