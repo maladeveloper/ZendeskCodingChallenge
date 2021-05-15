@@ -8,6 +8,8 @@ Made an application to display a list of tickets related to a specific account, 
 <p align="center">
 <img src="./static/demo_gif.gif" width="800" height="500" />
 </p>
+
+
 ## Running the Application Locally
 
 To run the application locally make sure the machine used to run the application has *Node* and its associated package manager *npm* installed and in the PATH of the terminal.
